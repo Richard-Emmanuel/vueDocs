@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Starlight Starter Kit: Basics
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
@@ -52,3 +53,7 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+=======
+# vueDocs
+This is a migration of the official Vue documentation from Vuepress to Astro starlight
+>>>>>>> 68c7f048983b3f92c564e48d4d981314afbc99eb
