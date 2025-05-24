@@ -3,17 +3,14 @@ title: Transition
 description: A guide to using the Transition component in Vue.js.
 ---
 
-<script setup>
-import Basic from './transition-demos/Basic.jsx'
-import SlideFade from './transition-demos/SlideFade.jsx'
-import CssAnimation from './transition-demos/CssAnimation.jsx'
-import NestedTransitions from './transition-demos/NestedTransitions.jsx'
-import JsHooks from './transition-demos/JsHooks.jsx'
-import BetweenElements from './transition-demos/BetweenElements.jsx'
-import BetweenComponents from './transition-demos/BetweenComponents.jsx'
-import ClientOnly from '../../../components/ClientOnly.jsx'
-import Teleport from '../../../components/Teleport.jsx'
-</script>
+import Basic from "./transition-demos/Basic.jsx";
+import SlideFade from "./transition-demos/SlideFade.jsx";
+import CssAnimation from "./transition-demos/CssAnimation.jsx";
+import NestedTransitions from "./transition-demos/NestedTransitions.jsx";
+import JsHooks from "./transition-demos/JsHooks.jsx";
+import BetweenElements from "./transition-demos/BetweenElements.jsx";
+import BetweenComponents from "./transition-demos/BetweenComponents.jsx";
+import Teleport from "../../../components/Teleport.jsx";
 
 # Transition
 
@@ -55,10 +52,6 @@ This is an example of the most basic usage:
   opacity: 0;
 }
 ```
-
-<ClientOnly>
-  <Basic />
-</ClientOnly>
 
 <div class="composition-api">
 
@@ -165,10 +158,6 @@ Here is a more advanced example that transitions multiple properties, with diffe
 }
 ```
 
-<ClientOnly>
-  <SlideFade />
-</ClientOnly>
-
 <div class="composition-api">
 
 [Try it in the Playground](https://play.vuejs.org/#eNqFkc9uwjAMxl/F6wXQKIVNk1AX0HbZC4zDDr2E4EK0NIkStxtDvPviFQ0OSFzyx/m+n+34kL16P+lazMpMRBW0J4hIrV9WVjfeBYIDBKzhCHVwDQySdFDZyipnY5Lu3BcsWDCk0OKosqLoKcmfLoSNN5KQbyTWLZGz8KKMVp+LKju573ivsuXKbbcG4d3oDcI9vMkNiqL3JD+AWAVpoyadGFY2yATW5nVSJj9rkspDl+v6hE/hHRrjRMEdpdfiDEkBUVxWaEWkveHj5AzO0RKGXCrSHcKBIfSPKEEaA9PJYwSUEXPX0nNlj8y6RBiUHd5AzCOodq1VvsYfjWE4G6fgEy/zMcxG17B9ZTyX8bV85C5y1S40ZX/kdj+GD1P/zVQA56XStC9h2idJI/z7huz4CxoVvE4=)
@@ -213,10 +202,6 @@ For most CSS animations, we can simply declare them under the `*-enter-active` a
   }
 }
 ```
-
-<ClientOnly>
-  <CssAnimation />
-</ClientOnly>
 
 <div class="composition-api">
 
@@ -320,10 +305,6 @@ In such cases you can specify an explicit transition duration (in milliseconds) 
 ```vue-html
 <Transition :duration="550">...</Transition>
 ```
-
-<ClientOnly>
-  <NestedTransitions />
-</ClientOnly>
 
 [Try it in the Playground](https://play.vuejs.org/#eNqVVd9v0zAQ/leO8LAfrE3HNKSFbgKmSYMHQNAHkPLiOtfEm2NHttN2mvq/c7bTNi1jgFop9t13d9995ziPyfumGc5bTLJkbLkRjQOLrm2uciXqRhsHj2BwBiuYGV3DAUEPcpUrrpUlaKUXcOkBh860eJSrcRqzUDxtHNaNZA5pBzCets5pBe+4FPz+Mk+66Bf+mSdXE12WEsdphMWQiWHKCicoLCtaw/yKIs/PR3kCitVIG4XWYUEJfATFFGIO84GYdRUIyCWzlra6dWg2wA66dgqlts7c+d8tSqk34JTQ6xqb9TjdUiTDOO21TFvrHqRfDkPpExiGKvBITjdl/L40ulVFBi8R8a3P17CiEKrM4GzULIOlFmpQoSgrl8HpKFpX3kFZu2y0BNhJxznvwaJCA1TEYcC4E3MkKp1VIptjZ43E3KajDJiUMBqeWUBmcUBUqJGYOT2GAiV7gJAA9Iy4GyoBKLH2z+N0W3q/CMC2yCCkyajM63Mbc+9z9mfvZD+b071MM23qLC69+j8PvX5HQUDdMC6cL7BOTtQXCJwpas/qHhWIBdYtWGgtDWNttWTmThu701pf1W6+v1Hd8Xbz+k+VQxmv8i7Fv1HZn+g/iv2nRkjzbd6npf/Rkz49DifQ3dLZBBYOJzC4rqgCwsUbmLYlCAUVU4XsCd1NrCeRHcYXb1IJC/RX2hEYCwJTvHYVMZoavbBI09FmU+LiFSzIh0AIXy1mqZiFKaKCmVhiEVJ7GftHZTganUZ56EYLL3FykjhL195MlMM7qxXdmEGDPOG6boRE86UJVPMki+p4H01WLz4Fm78hSdBo5xXy+yfsd3bpbXny1SA1M8c82fgcMyW66L75/hmXtN44a120ktDPOL+h1bL1HCPsA42DaPdwge3HcO/TOCb2ZumQJtA15Yl65Crg84S+BdfPtL6lezY8C3GkZ7L6Bc1zNR0=)
 
@@ -469,10 +450,6 @@ With `:css="false"`, we are also fully responsible for controlling when the tran
 
 Here's a demo using the [GSAP library](https://gsap.com/) to perform the animations. You can, of course, use any other animation library you want, for example [Anime.js](https://animejs.com/) or [Motion One](https://motion.dev/):
 
-<ClientOnly>
-  <JsHooks />
-</ClientOnly>
-
 <div class="composition-api">
 
 [Try it in the Playground](https://play.vuejs.org/#eNqNVMtu2zAQ/JUti8I2YD3i1GigKmnaorcCveTQArpQFCWzlkiCpBwHhv+9Sz1qKYckJ3FnlzvD2YVO5KvW4aHlJCGpZUZoB5a7Vt9lUjRaGQcnMLyEM5RGNbDA0sX/VGWpHnB/xEQmmZIWe+zUI9z6m0tnWr7ymbKVzAklQclvvFSG/5COmyWvV3DKJHTdQiRHZN0jAJbRmv9OIA432/UE+jODlKZMuKcErnx8RrazP8woR7I1FEryKaVTU8aiNdRfwWZTQtQwi1HAGF/YB4BTyxNY8JpaJ1go5K/WLTfhdg1Xq8V4SX5Xja65w0ovaCJ8Jvsnpwc+l525F2XH4ac3Cj8mcB3HbxE9qnvFMRzJ0K3APuhIjPefmTTyvWBAGvWbiDuIgeNYRh3HCCDNW+fQmHtWC7a/zciwaO/8NyN3D6qqap5GfVnXAC89GCqt8Bp77vu827+A+53AJrOFzMhQdMnO8dqPpMO74Yx4wqxFtKS1HbBOMdIX4gAMffVp71+Qq2NG4BCIcngBKk8jLOvfGF30IpBGEwcwtO6p9sdwbNXPIadsXxnVyiKB9x83+c3N9WePN9RUQgZO6QQ2sT524KMo3M5Pf4h3XFQ7NwFyZQpuAkML0doEtvEHhPvRDPRkTfq/QNDgRvy1SuIvpFOSDQmbkWTckf7hHsjIzjltkyhqpd5XIVNN5HNfGlW09eAcMp3J+R+pEn7L)
@@ -543,10 +520,6 @@ In addition to toggling an element with `v-if` / `v-show`, we can also transitio
 </Transition>
 ```
 
-<ClientOnly>
-  <BetweenElements />
-</ClientOnly>
-
 [Try it in the Playground](https://play.vuejs.org/#eNqdk8tu2zAQRX9loI0SoLLcFN2ostEi6BekmwLa0NTYJkKRBDkSYhj+9wxJO3ZegBGu+Lhz7syQ3Bd/nJtNIxZN0QbplSMISKNbdkYNznqCPXhcwwHW3g5QsrTsTGekNYGgt/KBBCEsouimDGLCvrztTFtnGGN4QTg4zbK4ojY4YSDQTuOiKwbhN8pUXm221MDd3D11xfJeK/kIZEHupEagrbfjZssxzAgNs5nALIC2VxNILUJg1IpMxWmRUAY9U6IZ2/3zwgRFyhowYoieQaseq9ElDaTRrkYiVkyVWrPiXNdiAcequuIkPo3fMub5Sg4l9oqSevmXZ22dwR8YoQ74kdsL4Go7ZTbR74HT/KJfJlxleGrG8l4YifqNYVuf251vqOYr4llbXz4C06b75+ns1a3BPsb0KrBy14Aymnerlbby8Vc8cTajG35uzFITpu0t5ufzHQdeH6LBsezEO0eJVbB6pBiVVLPTU6jQEPpKyMj8dnmgkQs+HmQcvVTIQK1hPrv7GQAFt9eO9Bk6fZ8Ub52Qiri8eUo+4dbWD02exh79v/nBP+H2PStnwz/jelJ1geKvk/peHJ4BoRZYow==)
 
 ## Transition Modes
@@ -563,10 +536,6 @@ However, in some cases this isn't an option, or simply isn't the desired behavio
 
 Here's the previous demo with `mode="out-in"`:
 
-<ClientOnly>
-  <BetweenElements mode="out-in" />
-</ClientOnly>
-
 `<Transition>` also supports `mode="in-out"`, although it's much less frequently used.
 
 ## Transition Between Components
@@ -578,10 +547,6 @@ Here's the previous demo with `mode="out-in"`:
   <component :is="activeComponent"></component>
 </Transition>
 ```
-
-<ClientOnly>
-  <BetweenComponents />
-</ClientOnly>
 
 <div class="composition-api">
 
