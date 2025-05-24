@@ -19,23 +19,23 @@ This page and many other chapters later in the guide contain different content f
 
 With the Options API, we use the `data` option to declare reactive state of a component. The option value should be a function that returns an object. Vue will call the function when creating a new component instance, and wrap the returned object in its reactivity system. Any top-level properties of this object are proxied on the component instance (`this` in methods and lifecycle hooks):
 
-```js{2-6}
+```js
 export default {
   data() {
     return {
-      count: 1
-    }
+      count: 1,
+    };
   },
 
   // `mounted` is a lifecycle hook which we will explain later
   mounted() {
     // `this` refers to the component instance.
-    console.log(this.count) // => 1
+    console.log(this.count); // => 1
 
     // data can be mutated as well
-    this.count = 2
-  }
-}
+    this.count = 2;
+  },
+};
 ```
 
 [Try it in the Playground](https://play.vuejs.org/#eNpFUNFqhDAQ/JXBpzsoHu2j3B2U/oYPpnGtoetGkrW2iP/eRFsPApthd2Zndilex7H8mqioimu0wY16r4W+Rx8ULXVmYsVSC9AaNafz/gcC6RTkHwHWT6IVnne85rI+1ZLr5YJmyG1qG7gIA3Yd2R/LhN77T8y9sz1mwuyYkXazcQI2SiHz/7iP3VlQexeb5KKjEKEe2lPyMIxeSBROohqxVO4E6yV6ppL9xykTy83tOQvd7tnzoZtDwhrBO2GYNFloYWLyxrzPPOi44WWLWUt618txvASUhhRCKSHgbZt2scKy7HfCujGOqWL9BVfOgyI=)
@@ -100,20 +100,20 @@ console.log(count.value); // 1
 
 To access refs in a component's template, declare and return them from a component's `setup()` function:
 
-```js{5,9-11}
-import { ref } from 'vue'
+```js
+import { ref } from "vue";
 
 export default {
   // `setup` is a special hook dedicated for the Composition API.
   setup() {
-    const count = ref(0)
+    const count = ref(0);
 
     // expose the ref to the template
     return {
-      count
-    }
-  }
-}
+      count,
+    };
+  },
+};
 ```
 
 ```vue-html
@@ -124,7 +124,7 @@ Notice that we did **not** need to append `.value` when using the ref in the tem
 
 You can also mutate a ref directly in event handlers:
 
-```vue-html{1}
+```vue-html
 <button @click="count++">
   {{ count }}
 </button>
@@ -132,30 +132,30 @@ You can also mutate a ref directly in event handlers:
 
 For more complex logic, we can declare functions that mutate refs in the same scope and expose them as methods alongside the state:
 
-```js{7-10,15}
-import { ref } from 'vue'
+```js
+import { ref } from "vue";
 
 export default {
   setup() {
-    const count = ref(0)
+    const count = ref(0);
 
     function increment() {
       // .value is needed in JavaScript
-      count.value++
+      count.value++;
     }
 
     // don't forget to expose the function as well.
     return {
       count,
-      increment
-    }
-  }
-}
+      increment,
+    };
+  },
+};
 ```
 
 Exposed methods can then be used as event handlers:
 
-```vue-html{1}
+```vue-html
 <button @click="increment">
   {{ count }}
 </button>
@@ -167,14 +167,14 @@ Here's the example live on [Codepen](https://codepen.io/vuejs-examples/pen/WNYba
 
 Manually exposing state and methods via `setup()` can be verbose. Luckily, it can be avoided when using [Single-File Components (SFCs)](/guide/scaling-up/sfc). We can simplify the usage with `<script setup>`:
 
-```vue{1}
+```vue
 <script setup>
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const count = ref(0)
+const count = ref(0);
 
 function increment() {
-  count.value++
+  count.value++;
 }
 </script>
 
@@ -234,23 +234,23 @@ The reactivity system is discussed in more details in the [Reactivity in Depth](
 
 To add methods to a component instance we use the `methods` option. This should be an object containing the desired methods:
 
-```js{7-11}
+```js
 export default {
   data() {
     return {
-      count: 0
-    }
+      count: 0,
+    };
   },
   methods: {
     increment() {
-      this.count++
-    }
+      this.count++;
+    },
   },
   mounted() {
     // methods can be called in lifecycle hooks, or other methods!
-    this.increment()
-  }
-}
+    this.increment();
+  },
+};
 ```
 
 Vue automatically binds the `this` value for `methods` so that it always refers to the component instance. This ensures that a method retains the correct `this` value if it's used as an event listener or callback. You should avoid using arrow functions when defining `methods`, as that prevents Vue from binding the appropriate `this` value:

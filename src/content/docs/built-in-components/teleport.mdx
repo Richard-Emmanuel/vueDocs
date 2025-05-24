@@ -1,7 +1,91 @@
 ---
 title: Teleport
+description: A guide to using the Teleport component.
 ---
+
+import { useState } from "react";
+import ModalDemo from "./teleport-demos/ModalDemo.jsx";
 
 # Teleport
 
 The `Teleport` component is used to move elements to a different location in the DOM.
+
+## Basic Usage
+
+Here's a simple example of using Teleport to render a modal:
+
+```js
+import { useState } from "react";
+import Teleport from "./components/Teleport";
+
+function ModalDemo() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div>
+      <button onClick={() => setIsOpen(true)}>Open Modal</button>
+
+      <Teleport to="body">
+        {isOpen && (
+          <div className="modal-demo">
+            <p style={{ marginBottom: "20px" }}>Hello from the modal!</p>
+            <button onClick={() => setIsOpen(false)}>Close</button>
+          </div>
+        )}
+      </Teleport>
+
+      <style jsx>{`
+        .modal-demo {
+          position: fixed;
+          z-index: 999;
+          top: 20%;
+          left: 50%;
+          width: 300px;
+          margin-left: -150px;
+          background-color: var(--vt-c-bg);
+          padding: 30px;
+          border-radius: 8px;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+      `}</style>
+    </div>
+  );
+}
+```
+
+## Live Demo
+
+<div className="demo">
+  <ModalDemo />
+</div>
+
+## Why Use Teleport?
+
+Teleport is useful when you need to:
+
+1. Render content outside the normal DOM hierarchy
+2. Create modals, tooltips, or popovers that need to break out of container elements
+3. Handle z-index stacking context issues
+4. Avoid CSS inheritance problems
+
+## Multiple Teleports
+
+You can use multiple teleports to the same target:
+
+```js
+<div>
+  <Teleport to="body">
+    <div>First Teleport</div>
+  </Teleport>
+  <Teleport to="body">
+    <div>Second Teleport</div>
+  </Teleport>
+</div>
+```
+
+## Best Practices
+
+1. Always clean up teleported content when components unmount
+2. Consider accessibility when using teleports
+3. Use teleports for modals, tooltips, and other overlay content
+4. Remember that teleports don't affect the React component tree

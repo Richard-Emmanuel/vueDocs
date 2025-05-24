@@ -119,7 +119,7 @@ Using our `<MyButton>` component example from the [previous section](#attribute-
 
 We want all fallthrough attributes like `class` and `v-on` listeners to be applied to the inner `<button>`, not the outer `<div>`. We can achieve this with `inheritAttrs: false` and `v-bind="$attrs"`:
 
-```vue-html{2}
+```vue-html
 <div class="btn-wrapper">
   <button class="btn" v-bind="$attrs">Click Me</button>
 </div>
@@ -145,7 +145,7 @@ If `<CustomLayout>` has the following multi-root template, there will be a warni
 
 The warning will be suppressed if `$attrs` is explicitly bound:
 
-```vue-html{2}
+```vue-html
 <header>...</header>
 <main v-bind="$attrs">...</main>
 <footer>...</footer>

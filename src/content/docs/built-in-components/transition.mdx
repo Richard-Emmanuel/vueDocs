@@ -291,7 +291,7 @@ Although the transition classes are only applied to the direct child element in 
 
 We can even add a transition delay to the nested element on enter, which creates a staggered enter animation sequence:
 
-```css{3}
+```css
 /* delay enter of nested element for staggered effect */
 .nested-enter-active .inner {
   transition-delay: 0.25s;
@@ -437,7 +437,7 @@ These hooks can be used in combination with CSS transitions / animations or on t
 
 When using JavaScript-only transitions, it is usually a good idea to add the `:css="false"` prop. This explicitly tells Vue to skip auto CSS transition detection. Aside from being slightly more performant, this also prevents CSS rules from accidentally interfering with the transition:
 
-```vue-html{3}
+```vue-html
 <Transition
   ...
   :css="false"
@@ -465,7 +465,7 @@ Here's a demo using the [GSAP library](https://gsap.com/) to perform the animati
 
 Transitions can be reused through Vue's component system. To create a reusable transition, we can create a component that wraps the `<Transition>` component and passes down the slot content:
 
-```vue{5}
+```vue
 <!-- MyTransition.vue -->
 <script>
 // JavaScript hooks logic...
@@ -473,11 +473,9 @@ Transitions can be reused through Vue's component system. To create a reusable t
 
 <template>
   <!-- wrap the built-in Transition component -->
-  <Transition
-    name="my-transition"
-    @enter="onEnter"
-    @leave="onLeave">
-    <slot></slot> <!-- pass down slot content -->
+  <Transition name="my-transition" @enter="onEnter" @leave="onLeave">
+    <slot></slot>
+    <!-- pass down slot content -->
   </Transition>
 </template>
 

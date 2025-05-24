@@ -6,7 +6,7 @@ description: A guide to using composables in Vue.js.
 # Composables
 
 import MousePosition from "./components/mousePosition.jsx";
-import { initMouseTracker } from "./components/mouseTracker.js";
+import useMouse from "./components/useMouse.js";
 
 {/* @client */}
 
@@ -122,21 +122,21 @@ export function useEventListener(target, event, callback) {
 
 And now our `useMouse()` composable can be simplified to:
 
-```js{3,9-12}
+```js
 // mouse.js
-import { ref } from 'vue'
-import { useEventListener } from './event'
+import { ref } from "vue";
+import { useEventListener } from "./event";
 
 export function useMouse() {
-  const x = ref(0)
-  const y = ref(0)
+  const x = ref(0);
+  const y = ref(0);
 
-  useEventListener(window, 'mousemove', (event) => {
-    x.value = event.pageX
-    y.value = event.pageY
-  })
+  useEventListener(window, "mousemove", (event) => {
+    x.value = event.pageX;
+    y.value = event.pageY;
+  });
 
-  return { x, y }
+  return { x, y };
 }
 ```
 
@@ -224,30 +224,30 @@ const { data, error } = useFetch(() => `/posts/${props.id}`);
 
 We can refactor our existing implementation with the [`watchEffect()`](/api/reactivity-core.html#watcheffect) and [`toValue()`](/api/reactivity-utilities.html#tovalue) APIs:
 
-```js{8,13}
+```js
 // fetch.js
-import { ref, watchEffect, toValue } from 'vue'
+import { ref, watchEffect, toValue } from "vue";
 
 export function useFetch(url) {
-  const data = ref(null)
-  const error = ref(null)
+  const data = ref(null);
+  const error = ref(null);
 
   const fetchData = () => {
     // reset state before fetching..
-    data.value = null
-    error.value = null
+    data.value = null;
+    error.value = null;
 
     fetch(toValue(url))
       .then((res) => res.json())
       .then((json) => (data.value = json))
-      .catch((err) => (error.value = err))
-  }
+      .catch((err) => (error.value = err));
+  };
 
   watchEffect(() => {
-    fetchData()
-  })
+    fetchData();
+  });
 
-  return { data, error }
+  return { data, error };
 }
 ```
 

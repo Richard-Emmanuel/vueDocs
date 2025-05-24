@@ -57,7 +57,7 @@ Here is an example of applying enter / leave transitions to a `v-for` list using
 
 The above demo has some obvious flaws: when an item is inserted or removed, its surrounding items instantly "jump" into place instead of moving smoothly. We can fix this by adding a few additional CSS rules:
 
-```css{1,13-17}
+```css
 .list-move, /* apply transition to moving elements */
 .list-enter-active,
 .list-leave-active {
@@ -91,7 +91,7 @@ You can also specify custom transition classes for the moving element by passing
 
 By communicating with JavaScript transitions through data attributes, it's also possible to stagger transitions in a list. First, we render the index of an item as a data attribute on the DOM element:
 
-```vue-html{11}
+```vue-html
 <TransitionGroup
   tag="ul"
   :css="false"
@@ -111,14 +111,14 @@ By communicating with JavaScript transitions through data attributes, it's also 
 
 Then, in JavaScript hooks, we animate the element with a delay based on the data attribute. This example is using the [GSAP library](https://gsap.com/) to perform the animation:
 
-```js{5}
+```js
 function onEnter(el, done) {
   gsap.to(el, {
     opacity: 1,
-    height: '1.6em',
+    height: "1.6em",
     delay: el.dataset.index * 0.15,
-    onComplete: done
-  })
+    onComplete: done,
+  });
 }
 ```
 
