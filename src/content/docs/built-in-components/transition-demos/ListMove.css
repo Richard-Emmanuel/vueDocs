@@ -1,0 +1,21 @@
+.list2-move,
+.list2-enter-active,
+.list2-leave-active {
+  transition: all 500ms ease;
+}
+
+.list2-enter {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.list2-leave-active {
+  position: absolute !important;
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+} 

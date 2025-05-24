@@ -1,0 +1,33 @@
+.slide-fade-enter {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-fade-exit-active {
+  transform: translateX(20px);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+/* Add these classes for the initial state */
+.slide-fade-appear {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.slide-fade-appear-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+} 
