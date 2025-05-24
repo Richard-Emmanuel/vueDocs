@@ -1,38 +1,55 @@
-// shared data across instances so we load only once
-
-import { ref } from 'vue'
+// sponsor.ts
+import { useState, useEffect } from "react";
 
 declare global {
-  const fathom: {
-    trackGoal: (id: string, value: number) => any
+  interface Window {
+    fathom?: {
+      trackGoal: (id: string, value: number) => any;
+    };
   }
 }
 
 export interface Sponsor {
-  url: string
-  img: string
-  name: string
-  description?: string
-  priority?: boolean
+  url: string;
+  img: string;
+  name: string;
+  description?: string;
+  priority?: boolean;
 }
+
+export const base = `https://automation.vuejs.org`;
 
 export interface SponsorData {
-  special: Sponsor[]
-  platinum: Sponsor[]
-  platinum_china: Sponsor[]
-  gold: Sponsor[]
-  silver: Sponsor[]
-  bronze: Sponsor[]
+  special: Sponsor[];
+  platinum: Sponsor[];
+  platinum_china: Sponsor[];
+  gold: Sponsor[];
+  silver: Sponsor[];
+  bronze: Sponsor[];
 }
 
-export const data = ref<SponsorData>()
-export const pending = ref<boolean>(false)
+// Shared across instances like a module-level singleton
+let sponsorData: SponsorData | null = null;
+let dataPromise: Promise<SponsorData> | null = null;
 
-export const base = `https://automation.vuejs.org`
+export const loadSponsors = async (): Promise<SponsorData> => {
+  if (sponsorData) return sponsorData;
 
-export const load = async () => {
-  if (!pending.value) {
-    pending.value = true
-    data.value = await (await fetch(`${base}/data.json`)).json()
+  if (!dataPromise) {
+    dataPromise = fetch(`${base}/data.json`).then((res) => res.json());
   }
-}
+
+  sponsorData = await dataPromise;
+  return sponsorData;
+};
+
+// Optional React hook if you want live binding inside components
+export const useSponsors = () => {
+  const [data, setData] = useState<SponsorData | null>(null);
+
+  useEffect(() => {
+    loadSponsors().then(setData);
+  }, []);
+
+  return data;
+};
